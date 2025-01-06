@@ -3,7 +3,7 @@ plugins {
     id("com.gradleup.shadow") version "8.3.1"
 }
 
-application.mainClass = "com.chipset.Bot" //
+application.mainClass = "com.chipset.main.Bot" //
 group = "org.example"
 version = "1.0"
 

@@ -1,5 +1,9 @@
-package com.chipset.Main;
+package com.chipset.main;
 
+import com.chipset.commands.poll.PollHandler;
+import com.chipset.context.Avatar;
+import com.chipset.context.Rename;
+import com.chipset.listeners.*;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.command.SlashCommand;
@@ -13,6 +17,7 @@ import java.util.Set;
 
 public class Bot {
     private static final String TOKEN = "";
+    public static PollHandler pollHandler;
 
     public static void main(String[] arguments) throws Exception {
         CommandClientBuilder builder = new CommandClientBuilder();
@@ -27,6 +32,13 @@ public class Bot {
             builder.addSlashCommand(temp);
         }
 
+        pollHandler = new PollHandler();
+
+        builder.addContextMenus(
+                new Avatar(),
+                new Rename()
+        );
+
         // Build the CommandClient instance
         CommandClient commandClient = builder.build();
 
@@ -39,7 +51,13 @@ public class Bot {
                         GatewayIntent.GUILD_MEMBERS,
                         GatewayIntent.GUILD_WEBHOOKS)
                 .addEventListeners(
-                        commandClient
+                        commandClient,
+                        new ReadyListener(),
+                        new ModalListener(),
+                        new MenuListener(),
+                        new PeopleListener(),
+                        new PollListener(),
+                        new ReactionListener()
                 ).build();
     }
 
