@@ -16,10 +16,11 @@ import java.util.Set;
 
 
 public class Bot {
-    private static final String TOKEN = "";
+    private static final String TOKEN = System.getenv("BOT_TOKEN");
     public static PollHandler pollHandler;
 
     public static void main(String[] arguments) throws Exception {
+        System.out.println(TOKEN);
         CommandClientBuilder builder = new CommandClientBuilder();
         builder.setOwnerId(192370343510409216L);
         builder.forceGuildOnly(193117152709050368L);
