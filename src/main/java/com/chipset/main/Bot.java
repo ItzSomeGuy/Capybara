@@ -16,7 +16,7 @@ import java.util.Set;
 
 
 public class Bot {
-    private static final String TOKEN = System.getenv("BOT_TOKEN");
+    private static final String TOKEN = System.getenv("TOKEN");
     public static PollHandler pollHandler;
 
     public static void main(String[] arguments) throws Exception {
